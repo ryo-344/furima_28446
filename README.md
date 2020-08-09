@@ -26,10 +26,10 @@
 | image       | string     | null: false                    |
 | name        | string     | null: false                    |
 | explanation | text       | null: false                    |
-| category    | string     | null: false                    |
-| status      | string     | null: false                    |
-| burden      | string     | null: false                    |
-| days        | string     | null: false                    |
+| category    | integer    | null: false                    |
+| status      | integer    | null: false                    |
+| burden      | integer    | null: false                    |
+| days        | integer    | null: false                    |
 | price       | integer    | null: false                    |
 | user        | references | null: false, foreign_key: true |
 
@@ -50,6 +50,7 @@
 
 - belongs_to :user
 - has_one :item
+- has_one :shipping
 
 ## shippings テーブル
 
@@ -60,8 +61,9 @@
 | number          | string     | null: false                    |
 | building        | string     | null: false                    |
 | telephonenumber | string     | null: false                    |
-| item_id         | references | null: false, foreign_key: true |
+| item            | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :item
+- has_one :purchase
