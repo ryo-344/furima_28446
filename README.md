@@ -21,17 +21,18 @@
 
 ## items テーブル
 
-| Column      | Type       | Option                         |
-| ------------| ---------- | -------------------------------|    
-| image       | string     | null: false                    |
-| name        | string     | null: false                    |
-| explanation | text       | null: false                    |
-| category    | integer    | null: false                    |
-| status      | integer    | null: false                    |
-| burden      | integer    | null: false                    |
-| days        | integer    | null: false                    |
-| price       | integer    | null: false                    |
-| user        | references | null: false, foreign_key: true |
+| Column         | Type       | Option                         |
+| -------------- | ---------- | -------------------------------|    
+| image          | string     | null: false                    |
+| name           | string     | null: false                    |
+| explanation    | text       | null: false                    |
+| category       | integer    | null: false                    |
+| status         | integer    | null: false                    |
+| shippingorigin | integer    | null: false 
+| burden         | integer    | null: false                    |
+| days           | integer    | null: false                    |
+| price          | integer    | null: false                    |
+| user           | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -49,7 +50,7 @@
 ## Association
 
 - belongs_to :user
-- has_one :item
+- belongs_to :item
 - has_one :shipping
 
 ## shippings テーブル
@@ -62,8 +63,8 @@
 | building        | string     | null: false                    |
 | telephonenumber | string     | null: false                    |
 | item            | references | null: false, foreign_key: true |
-
+| purchase        | references | null: false, foreign_key: true |
 ### Association
 
 - belongs_to :item
-- has_one :purchase
+- belongs_to :purchase
