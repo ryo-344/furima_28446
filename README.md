@@ -17,6 +17,7 @@
 ### Association
 
 - has_many :items
+- has_many :purchases
 
 ## items テーブル
 
@@ -30,24 +31,36 @@
 | burden      | string     | null: false                    |
 | days        | string     | null: false                    |
 | price       | integer    | null: false                    |
-| nickname    | references | null: false, foreign_key: true |
+| user        | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_on :shipping
+- has_one :purchase
+- has_one :shipping
 
+## purchase テーブル
+
+| Column | Type       | Option                         |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
+
+## Association
+
+- belongs_to :user
+- has_one :item
 
 ## shippings テーブル
 
-| Column|         | Type    | Option                         |
-| --------------- | ------- | ------------------------------ |
-| postcode        | string  | null: false                    |
-| city            | string  | null: false                    |
-| number          | string  | null: false                    |
-| building        | string  | null: false                    |
-| telephonenumber | string  | null: false                    |
-| item_id         | integer | null: false, foreign_key: true |
+| Column          | Type       | Option                         |
+| --------------- | ---------- | ------------------------------ |
+| postcode        | string     | null: false                    |
+| city            | string     | null: false                    |
+| number          | string     | null: false                    |
+| building        | string     | null: false                    |
+| telephonenumber | string     | null: false                    |
+| item_id         | references | null: false, foreign_key: true |
 
 ### Association
 
