@@ -5,9 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname, presence: true
-  validates :lastname, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'Full-width characters' }
-  validates :firstname, presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'Full-width characters' }
-  validates :lastnamekana, presence: true, format: { with: /\A[ァ-ン]+\z/, message: 'Full-width katakana characters' }
-  validates :firstnamekana, presence: true, format: { with: /\A[ァ-ン]+\z/, message: 'Full-width katakana characters' }
+  NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/.freeze
+  validates :lastname, presence: true, format: { with: NAME_REGEX, message: 'Full-width characters' }
+  validates :firstname, presence: true, format: { with: NAME_REGEX, message: 'Full-width characters' }
+  KANA_REGEX = /\A[ァ-ン]+\z/.freeze
+  validates :lastnamekana, presence: true, format: { with: KANA_REGEX, message: 'Full-width katakana characters' }
+  validates :firstnamekana, presence: true, format: { with: KANA_REGEX, message: 'Full-width katakana characters' }
   validates :birthday, presence: true
 end
