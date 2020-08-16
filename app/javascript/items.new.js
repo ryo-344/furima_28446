@@ -5,8 +5,8 @@ window.addEventListener('load',function(){
   let inputProfit = document.getElementById("profit")
   
   input.addEventListener('keyup', function(){
+    
     let price = this.value
-
     let fee = price / 10
     let profit = price - fee
     

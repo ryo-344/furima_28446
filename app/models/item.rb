@@ -13,11 +13,11 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :explanation
-    validates :category_id, inclusion: {in: 2..11}
-    validates :status_id, inclusion: {in: 2..7}
-    validates :shippingorigin_id, inclusion: {in: 2..48}
-    validates :burden_id, inclusion: {in: 2..3}
-    validates :days_id, inclusion: {in: 2..4}
-    validates :price, inclusion: {in: 300..9999999}
+    validates :category_id, inclusion: { in: 2..11 }
+    validates :status_id, inclusion: { in: 2..7 }
+    validates :shippingorigin_id, inclusion: { in: 2..48 }
+    validates :burden_id, inclusion: { in: 2..3 }
+    validates :days_id, inclusion: { in: 2..4 }
+    validates :price, inclusion: { in: 300..9_999_999 }
   end
 end
