@@ -22,7 +22,6 @@
 
 | Column         | Type       | Option                         |
 | -------------- | ---------- | -------------------------------|    
-| image          | string     | null: false                    |
 | name           | string     | null: false                    |
 | explanation    | text       | null: false                    |
 | category       | integer    | null: false                    |
