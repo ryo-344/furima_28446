@@ -13,7 +13,7 @@ RSpec.describe Item, type: :model do
       end
 
       it "価格の範囲が、¥300~9999999の間であれば保存できること" do
-        @item.price = "500"
+        @item.price = "300"
         expect(@item).to be_valid
       end
     end
@@ -43,7 +43,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
-      it '商品の状態がないと保存できないこと' do
+      it '商品の状態がないと保存できないこと' do   
         @item.status_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
@@ -74,7 +74,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '価格が¥300~9999999の間でないと保存できないこと' do
-        @item.price = "200"
+        @item.price = "299"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
