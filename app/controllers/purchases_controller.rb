@@ -1,12 +1,12 @@
 class PurchasesController < ApplicationController
 before_action :move_to_sign_in
-before_action :move_to_top, except: [:create]
+before_action :move_to_top, 
   def index
     @item = Item.find(params[:item_id])
   end
 
   def create
-    @order = Purchase.new(user_id: order_params[:user_id], item_id: order_params[:item_id])
+    @order = ItemShipping.new(order_params.except :token)
     if @order.valid?
       pay_item
       @order.save
@@ -24,12 +24,13 @@ before_action :move_to_top, except: [:create]
 
   def move_to_top
     @item = Item.find(params[:item_id])
-    redirect_to root_path if current_user.id == params[:item_id]
+    redirect_to root_path if current_user.id == @item.user_id
     redirect_to root_path if @item.purchase.present?
   end
 
   def order_params
-    params.permit(:token).merge(user_id: current_user.id, item_id: params[:item_id])
+    @item = Item.find(params[:item_id])
+    params.permit(:token, :postcode, :shippingorigin_id, :city, :number, :building, :telephonenumber).merge(user_id: current_user.id, item_id: @item.id)
   end
 
   def pay_item
