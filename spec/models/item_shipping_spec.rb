@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ItemShipping, type: :model do
   before do
     @buyer = FactoryBot.build(:item_shipping)
-    @seller = FactoryBot.build(:item_shipping)
+    @seller = FactoryBot.build(:item)
   end
 
   describe '商品購入情報の保存' do
