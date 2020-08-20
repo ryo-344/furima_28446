@@ -56,16 +56,16 @@ ActiveRecord::Schema.define(version: 2020_08_19_085329) do
   end
 
   create_table "shippings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "postcode", null: false
     t.integer "shippingorigin_id", null: false
     t.string "city", null: false
     t.string "number", null: false
-    t.string "building", null: false
+    t.string "building"
     t.string "telephonenumber", null: false
     t.integer "item_id", null: false
     t.integer "purchase_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

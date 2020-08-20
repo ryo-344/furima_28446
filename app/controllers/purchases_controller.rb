@@ -24,8 +24,11 @@ before_action :move_to_top,
 
   def move_to_top
     @item = Item.find(params[:item_id])
-    redirect_to root_path if current_user.id == @item.user_id
-    redirect_to root_path if @item.purchase.present?
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    elsif @item.purchase.present?
+      redirect_to root_path
+    end
   end
 
   def order_params

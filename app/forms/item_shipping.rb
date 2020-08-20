@@ -5,13 +5,13 @@ class ItemShipping
 
   with_options presence: true do
     validates :postcode, format: { with: /\A\d{3}[-]\d{4}\z/, message: "is invalid. Postal code Input correctly" }
-    validates :shippingorigin_id
     validates :city
     validates :number
-    validates :telephonenumber
+    validates :telephonenumber, format:  {with: /\A\d{11}\z/ }
     validates :item_id
     validates :user_id
   end
+  validates :shippingorigin_id, numericality: { other_than: 1, message: "can't be blank" }
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
