@@ -3,10 +3,12 @@ class ItemShipping
   attr_accessor :postcode, :shippingorigin_id, :city, :number, :building, :telephonenumber, :user_id, :item_id, :purchase_id
 
   with_options presence: true do
-    validates :postcode, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'is invalid. Postal code Input correctly' }
+    POSTCODE_REGEX = /\A\d{3}[-]\d{4}\z/.freeze
+    validates :postcode, format: { with: POSTCODE_REGEX, message: 'is invalid. Postal code Input correctly' }
     validates :city
     validates :number
-    validates :telephonenumber, format: { with: /\A\d{11}\z/ }
+    TEL_REGEX = /\A\d{11}\z/.freeze
+    validates :telephonenumber, format: { with: TEL_REGEX }
     validates :item_id
     validates :user_id
   end
