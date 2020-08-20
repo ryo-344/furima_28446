@@ -1,17 +1,17 @@
 class PurchasesController < ApplicationController
-before_action :move_to_sign_in
-before_action :move_to_top, 
-  def index
-    @item = Item.find(params[:item_id])
-  end
+  before_action :move_to_sign_in
+  before_action :move_to_top,
+                def index
+                  @item = Item.find(params[:item_id])
+                end
 
   def create
-    @order = ItemShipping.new(order_params.except :token)
+    @order = ItemShipping.new(order_params.except(:token))
     if @order.valid?
       pay_item
       @order.save
-      return redirect_to root_path
-    else  
+      redirect_to root_path
+    else
       render 'index'
     end
   end
@@ -38,12 +38,11 @@ before_action :move_to_top,
 
   def pay_item
     @item = Item.find(params[:item_id])
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: order_params[:token],
       currency: 'jpy'
     )
   end
-
 end

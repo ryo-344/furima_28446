@@ -2,12 +2,11 @@ require 'rails_helper'
 
 RSpec.describe ItemShipping, type: :model do
   before do
-      @item_shipping = FactoryBot.build(:item_shipping)
+    @item_shipping = FactoryBot.build(:item_shipping)
   end
 
   describe '商品購入情報の保存' do
     context '商品購入情報が保存できる場合' do
-
       it '郵便番号・都道府県・市区町村・番地・電話番号が存在すれば保存できること' do
         expect(@item_shipping).to be_valid
       end
@@ -24,9 +23,8 @@ RSpec.describe ItemShipping, type: :model do
     end
 
     context '商品購入情報が保存できない場合' do
-
       it '郵便番号が空だと保存できないこと' do
-        @item_shipping.postcode = ""
+        @item_shipping.postcode = ''
         @item_shipping.valid?
       end
 
